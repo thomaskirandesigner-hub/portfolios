@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Thomas Ravi Kiran — Senior UX Engineer & Product Designer specialising in AI, Industrial Automation, Fintech, and Enterprise platforms." />
+  <meta property="og:title" content="Thomas Ravi Kiran | Senior UX Engineer & Product Designer" />
+  <meta property="og:description" content="7+ years designing complex, data-intensive systems across Industrial Automation, Fintech, SaaS, and Enterprise platforms." />
+  <meta property="og:type" content="website" />
+  <title>Thomas Ravi Kiran | Senior UX Engineer & Product Designer</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════════════════
+     HOME PAGE
+════════════════════════════════════════════════════════════════════════ -->
+<div class="page active" id="pg-home">
+
+  <nav role="navigation" aria-label="Main">
+    <span class="nav-logo" onclick="showPage('home')" role="link" tabindex="0"
+          onkeydown="if(event.key==='Enter')showPage('home')">Thomas Ravi Kiran</span>
+    <div class="nav-links">
+      <span onclick="showPage('home')" tabindex="0"
+            onkeydown="if(event.key==='Enter')showPage('home')">Work</span>
+      <span onclick="showPage('about')" tabindex="0"
+            onkeydown="if(event.key==='Enter')showPage('about')">About</span>
+      <span class="nav-cta" onclick="showPage('contact')" tabindex="0"
+            onkeydown="if(event.key==='Enter')showPage('contact')">Get in touch</span>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- Hero -->
+    <section class="hero" aria-label="Introduction">
+      <div class="hero-tag">Senior UX Engineer &amp; Product Designer · Bangalore, India · Available immediately</div>
+      <h1>Bridging <em>system intelligence</em> with human decision-making.</h1>
+      <p class="hero-sub">7+ years designing complex, data-intensive systems across Industrial Automation, Fintech, SaaS, and Enterprise platforms. Specialist in AI + Automation UX.</p>
+      <div class="hero-actions">
+        <button class="btn-primary"
+                onclick="document.getElementById('cs-anchor').scrollIntoView({behavior:'smooth'})">
+          View case studies
+        </button>
+        <button class="btn-ghost" onclick="showPage('about')">About me</button>
+      </div>
+    </section>
+
+    <!-- Clients -->
+    <div class="clients">
+      <div class="clients-label">Companies I've worked with</div>
+      <div class="client-list">
+        <span class="client-name">ABB</span>
+        <span class="client-name">Quest Global</span>
+        <span class="client-name">Autovert Technologies</span>
+        <span class="client-name">Kinlong Hardware</span>
+        <span class="client-name">SPT Groups</span>
+      </div>
+    </div>
+
+    <!-- Case studies -->
+    <section class="section" id="cs-anchor" aria-label="Case studies">
+      <div class="section-label">Case studies</div>
+      <div class="cs-grid" role="list">
+
+        <article class="cs-card" role="listitem" onclick="showCase(0)"
+                 tabindex="0" onkeydown="if(event.key==='Enter')showCase(0)"
+                 aria-label="Case study: Evolving ABB's industrial HMI">
+          <div class="cs-tag">Industrial Automation · AI/UX · Enterprise</div>
+          <h3>Evolving a 15-year-old industrial HMI into an AI-augmented automation platform</h3>
+          <p>Led end-to-end UX strategy for ABB Ability System 800xA — improving operator decision-making speed by 25–35%.</p>
+          <div class="cs-pills">
+            <span class="pill">AI + Automation</span>
+            <span class="pill">HMI</span>
+            <span class="pill">Design systems</span>
+          </div>
+          <span class="cs-arrow" aria-hidden="true">↗</span>
+        </article>
+
+        <article class="cs-card" role="listitem" onclick="showCase(1)"
+                 tabindex="0" onkeydown="if(event.key==='Enter')showCase(1)"
+                 aria-label="Case study: Fintech conversion at Autovert">
+          <div class="cs-tag">Fintech · B2C · E-Commerce</div>
+          <h3>Driving conversion and trust across B2C and NBFC fintech applications</h3>
+          <p>Led UX for e-commerce and lending products at Autovert, earning Best Employee of the Year 2025.</p>
+          <div class="cs-pills">
+            <span class="pill">Fintech</span>
+            <span class="pill">Conversion</span>
+            <span class="pill">Design systems</span>
+          </div>
+          <span class="cs-arrow" aria-hidden="true">↗</span>
+        </article>
+
+        <article class="cs-card" role="listitem" onclick="showCase(2)"
+                 tabindex="0" onkeydown="if(event.key==='Enter')showCase(2)"
+                 aria-label="Case study: Global procurement UX at Kinlong">
+          <div class="cs-tag">B2B/B2C · Global Markets · SaaS</div>
+          <h3>Designing scalable procurement and e-commerce UX across 5 global markets</h3>
+          <p>Built culturally adaptive, accessibility-focused interfaces for India, Vietnam, Philippines, and Sri Lanka.</p>
+          <div class="cs-pills">
+            <span class="pill">Procurement</span>
+            <span class="pill">Accessibility</span>
+            <span class="pill">Internationalisation</span>
+          </div>
+          <span class="cs-arrow" aria-hidden="true">↗</span>
+        </article>
+
+        <article class="cs-card" role="listitem" onclick="showCase(3)"
+                 tabindex="0" onkeydown="if(event.key==='Enter')showCase(3)"
+                 aria-label="Case study: Brand and UX strategy at SPT Groups">
+          <div class="cs-tag">Brand · UX/UI · Strategy</div>
+          <h3>Full-cycle UX, brand, and digital strategy as Fractional CMO</h3>
+          <p>Delivered end-to-end design and brand strategy across multiple product lines at SPT Groups.</p>
+          <div class="cs-pills">
+            <span class="pill">Brand strategy</span>
+            <span class="pill">UI/UX</span>
+            <span class="pill">Marketing</span>
+          </div>
+          <span class="cs-arrow" aria-hidden="true">↗</span>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Capabilities -->
+    <section class="section" style="padding-top:0" aria-label="Capabilities">
+      <div class="section-label">Capabilities</div>
+      <div class="skills-grid">
+        <div class="skill-item">
+          <h4>UX strategy &amp; research</h4>
+          <p>UX research, heuristic evaluation, stakeholder interviews, usability testing, A/B testing, and information architecture. Turning complex system requirements into clear human experiences.</p>
+        </div>
+        <div class="skill-item">
+          <h4>Design &amp; prototyping</h4>
+          <p>High-fidelity wireframes, user flows, and interactive prototypes in Figma, Adobe XD, ProtoPie, and InVision. Pixel-perfect delivery with HTML, CSS, and React.</p>
+        </div>
+        <div class="skill-item">
+          <h4>AI + systems leadership</h4>
+          <p>Human + AI collaboration models, design systems (Material UI, APUX, Arcadia, ANT, Element), Agile/Scrum leadership, and mentoring junior designers.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- About strip -->
+    <section class="about-strip" aria-label="About">
+      <div class="about-inner">
+        <div>
+          <h2>The hardest UX problems live where machines and humans have to trust each other.</h2>
+          <p>Working on industrial automation at ABB taught me that the stakes in enterprise design are real: an operator making a slower decision because of a confusing interface costs more than a bad conversion rate.</p>
+          <p>I bring a hybrid background — BCA, front-end development, and 7+ years of product design — to every engagement. I don't just hand off specs; I close the gap between design intent and what actually ships.</p>
+          <button class="btn-ghost on-dark" style="margin-top:1rem" onclick="showPage('about')">
+            More about me
+          </button>
+        </div>
+        <div class="about-facts">
+          <div>
+            <div class="fact-num">7+</div>
+            <div class="fact-label">Years in UX &amp; product design</div>
+          </div>
+          <div>
+            <div class="fact-num">5</div>
+            <div class="fact-label">Global markets designed for</div>
+          </div>
+          <div>
+            <div class="fact-num">2×</div>
+            <div class="fact-label">Best Employee of the Year</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Thomas Ravi Kiran</p>
+    <div class="footer-links">
+      <span onclick="showPage('about')">About</span>
+      <span onclick="showPage('contact')">Contact</span>
+      <a href="https://behance.net/colorinkbottle" target="_blank" rel="noopener">Behance ↗</a>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════════════
+     CASE STUDY PAGE
+════════════════════════════════════════════════════════════════════════ -->
+<div class="page" id="pg-case">
+
+  <nav role="navigation" aria-label="Main">
+    <span class="nav-logo" onclick="showPage('home')" role="link" tabindex="0"
+          onkeydown="if(event.key==='Enter')showPage('home')">Thomas Ravi Kiran</span>
+    <div class="nav-links">
+      <span onclick="showPage('home')" tabindex="0"
+            onkeydown="if(event.key==='Enter')showPage('home')">Work</span>
+      <span onclick="showPage('about')" tabindex="0"
+            onkeydown="if(event.key==='Enter')showPage('about')">About</span>
+      <span class="nav-cta" onclick="showPage('contact')" tabindex="0"
+            onkeydown="if(event.key==='Enter')showPage('contact')">Get in touch</span>
+    </div>
+  </nav>
+
+  <main>
+    <div class="cs-hero">
+      <button class="cs-back" onclick="showPage('home')">← All work</button>
+      <div class="cs-hero-tag" id="cs-tag"></div>
+      <h1 id="cs-title"></h1>
+      <div class="cs-meta-row">
+        <div class="cs-meta-item"><label>Role</label><span id="cs-role"></span></div>
+        <div class="cs-meta-item"><label>Company</label><span id="cs-client"></span></div>
+        <div class="cs-meta-item"><label>Period</label><span id="cs-year"></span></div>
+        <div class="cs-meta-item"><label>Duration</label><span id="cs-duration"></span></div>
+      </div>
+    </div>
+
+    <div class="cs-banner" id="cs-banner" role="img" aria-label="Case study illustration">
+      <div class="cs-banner-inner">
+        <div class="cs-banner-icon" id="cs-icon" aria-hidden="true"></div>
+        <div class="cs-banner-label" id="cs-banner-label"></div>
+      </div>
+    </div>
+
+    <div class="cs-content">
+      <div class="outcome-grid" id="cs-outcomes" aria-label="Key outcomes"></div>
+      <div class="cs-body" id="cs-body"></div>
+    </div>
+
+    <div class="next-cs" onclick="nextCase()" role="button" tabindex="0"
+         onkeydown="if(event.key==='Enter')nextCase()">
+      <div class="next-cs-inner">
+        <div>
+          <div class="next-label">Next case study</div>
+          <div class="next-title" id="next-title"></div>
+        </div>
+        <span class="next-arrow" aria-hidden="true">→</span>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Thomas Ravi Kiran</p>
+    <div class="footer-links">
+      <span onclick="showPage('home')">Work</span>
+      <span onclick="showPage('about')">About</span>
+      <span onclick="showPage('contact')">Contact</span>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════════════
+     ABOUT PAGE
+════════════════════════════════════════════════════════════════════════ -->
+<div class="page" id="pg-about">
+
+  <nav role="navigation" aria-label="Main">
+    <span class="nav-logo" onclick="showPage('home')" role="link" tabindex="0"
+          onkeydown="if(event.key==='Enter')showPage('home')">Thomas Ravi Kiran</span>
+    <div class="nav-links">
+      <span onclick="showPage('home')" tabindex="0"
+            onkeydown="if(event.key==='Enter')showPage('home')">Work</span>
+      <span onclick="showPage('about')" tabindex="0" style="color:var(--ink)"
+            onkeydown="if(event.key==='Enter')showPage('about')">About</span>
+      <span class="nav-cta" onclick="showPage('contact')" tabindex="0"
+            onkeydown="if(event.key==='Enter')showPage('contact')">Get in touch</span>
+    </div>
+  </nav>
+
+  <main>
+    <div class="about-page">
+      <h1>I design the interfaces that industrial operators, financial users, and enterprise teams rely on every day.</h1>
+
+      <p>My background is unusual: a BCA in computer applications, certified in graphic design, and then seven years of product design work that has taken me from VR showrooms to AI-augmented industrial control systems. I understand how design decisions become engineering constraints, because I've written the HTML, CSS, and React myself.</p>
+      <p>I work best in complex, high-stakes domains — places where the data is dense, the users are expert, and a confusing interface has real consequences. I bring research rigour, systems thinking, and hands-on delivery to every project.</p>
+      <p>Currently based in Bangalore. Available immediately for full-time or contract roles.</p>
+
+      <div style="margin-top:3.5rem">
+        <div class="section-label">Experience</div>
+
+        <div class="tl-item">
+          <div class="tl-year">Oct 2025 – Jun 2026</div>
+          <div>
+            <h4>Senior UX Engineer — Quest Global (Client: ABB)</h4>
+            <p>Led end-to-end UX strategy for ABB Ability System 800xA, an AI-augmented industrial automation platform. Defined the Human + AI Collaboration Model, conducted UX research and heuristic evaluations, and partnered with global engineering teams to close design-to-development gaps.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-year">Oct 2024 – Oct 2025</div>
+          <div>
+            <h4>Senior Product Designer — Autovert Technologies</h4>
+            <p>Led UX for B2C e-commerce and NBFC fintech applications. Conducted UX audits aligned with business KPIs, scaled design systems across product lines, and mentored junior designers. Awarded Best Employee of the Year 2025.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-year">Aug 2022 – Oct 2024</div>
+          <div>
+            <h4>UI/UX Engineer — Kinlong Hardware</h4>
+            <p>Designed scalable UI/UX for procurement software, B2B/B2C e-commerce, and mobile applications across India, Vietnam, Philippines, and Sri Lanka. Built culturally adaptive, accessibility-focused interfaces and integrated assistive technology into VR showroom experiences. Awarded Best Employee of the Year 2023.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-year">Jun 2020 – Jun 2022</div>
+          <div>
+            <h4>UX/UI &amp; Graphic Designer — SPT Groups</h4>
+            <p>Delivered full-cycle UX/UI design and brand strategy as Fractional CMO. Designed digital marketing assets, interactive prototypes, and UI components for web and mobile across multiple product lines.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:3rem;padding-top:3rem;border-top:0.5px solid var(--border)">
+        <div class="section-label">Education &amp; certifications</div>
+        <p style="font-size:14px;color:var(--ink2);max-width:560px;line-height:1.7">
+          Bachelor in Computer Application, IEC University (2019).
+          Certified in Graphic Design — Print &amp; Publishing, Arena Animation (2016).
+          +2 in Maths &amp; Computer Science (2013).
+        </p>
+      </div>
+
+      <div style="margin-top:3rem;padding-top:3rem;border-top:0.5px solid var(--border)">
+        <div class="section-label">Tools &amp; stack</div>
+        <p style="font-size:14px;color:var(--ink2);max-width:600px;line-height:1.9">
+          <strong style="font-weight:500;color:var(--ink)">Design:</strong>
+          Figma, Adobe XD, Sketch, ProtoPie, InVision / Zeplin, Adobe Suite (PS · AI · AE · PR)<br>
+          <strong style="font-weight:500;color:var(--ink)">Research:</strong>
+          FigJam, Orange Data Mining, Usability Testing, Heuristic Evaluation, Stakeholder Interviews, A/B Testing<br>
+          <strong style="font-weight:500;color:var(--ink)">Dev &amp; systems:</strong>
+          HTML, CSS, React, Material UI, APUX, Arcadia, ANT, Element, Azure, Jira, Miro<br>
+          <strong style="font-weight:500;color:var(--ink)">AI tools:</strong>
+          Claude, ChatGPT, Figma AI
+        </p>
+      </div>
+
+      <div style="margin-top:3rem;display:flex;gap:1rem;flex-wrap:wrap">
+        <button class="btn-primary" onclick="showPage('home')">View my work</button>
+        <button class="btn-ghost" onclick="showPage('contact')">Get in touch</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Thomas Ravi Kiran</p>
+    <div class="footer-links">
+      <span onclick="showPage('home')">Work</span>
+      <span onclick="showPage('contact')">Contact</span>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════════════
+     CONTACT PAGE
+════════════════════════════════════════════════════════════════════════ -->
+<div class="page" id="pg-contact">
+
+  <nav role="navigation" aria-label="Main">
+    <span class="nav-logo" onclick="showPage('home')" role="link" tabindex="0"
+          onkeydown="if(event.key==='Enter')showPage('home')">Thomas Ravi Kiran</span>
+    <div class="nav-links">
+      <span onclick="showPage('home')" tabindex="0"
+            onkeydown="if(event.key==='Enter')showPage('home')">Work</span>
+      <span onclick="showPage('about')" tabindex="0"
+            onkeydown="if(event.key==='Enter')showPage('about')">About</span>
+      <span class="nav-cta" onclick="showPage('contact')" tabindex="0"
+            onkeydown="if(event.key==='Enter')showPage('contact')">Get in touch</span>
+    </div>
+  </nav>
+
+  <main>
+    <div class="contact-page">
+      <h1>Let's work together.</h1>
+      <p>I'm available immediately for Senior UX Engineer, Product Designer, or AI/UX specialist roles — full-time or contract, on-site or remote.</p>
+
+      <div class="contact-grid">
+        <div class="contact-cell">
+          <label>Email</label>
+          <a href="mailto:thomaskiran.designer@gmail.com">thomaskiran.designer@gmail.com</a>
+        </div>
+        <div class="contact-cell">
+          <label>Portfolio</label>
+          <a href="https://behance.net/colorinkbottle" target="_blank" rel="noopener">
+            behance.net/colorinkbottle ↗
+          </a>
+        </div>
+        <div class="contact-cell">
+          <label>Phone</label>
+          <a href="tel:+918105058960">+91 81050 58960</a>
+        </div>
+        <div class="contact-cell">
+          <label>Based in</label>
+          <div class="cell-val">Bangalore, India</div>
+          <div class="cell-sub">Available immediately · Open to relocation</div>
+        </div>
+      </div>
+
+      <p class="contact-note">
+        Prefer to see the work first? Browse the case studies to understand how I approach complex problems, then reach out with a brief about the role or project.
+      </p>
+      <button class="btn-primary" onclick="showPage('home')">View case studies</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Thomas Ravi Kiran</p>
+    <div class="footer-links">
+      <span onclick="showPage('home')">Work</span>
+      <span onclick="showPage('about')">About</span>
+    </div>
+  </footer>
+</div>
+
+<!-- JavaScript — loaded last so DOM is ready -->
+<script src="script.js"></script>
+</body>
+</html>

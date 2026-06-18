@@ -1,0 +1,84 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #111;
+  background: #fff;
+  line-height: 1.6;
+}
+
+/* NAV */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 60px;
+  position: sticky;
+  top: 0;
+  background: white;
+}
+
+.nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #555;
+}
+
+/* HERO */
+.hero {
+  padding: 120px 60px;
+  max-width: 900px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  color: #666;
+}
+
+/* WORK */
+.work {
+  padding: 80px 60px;
+}
+
+.work h2 {
+  margin-bottom: 40px;
+}
+
+.project {
+  margin-bottom: 40px;
+  cursor: pointer;
+}
+
+.project h3 {
+  font-size: 24px;
+}
+
+.project p {
+  color: #666;
+}
+
+/* ABOUT */
+.about {
+  padding: 80px 60px;
+  max-width: 700px;
+}
+
+/* CONTACT */
+.contact {
+  padding: 80px 60px;
+}
+
+/* FOOTER */
+footer {
+  padding: 40px;
+  text-align: center;
+  color: #888;
+}
