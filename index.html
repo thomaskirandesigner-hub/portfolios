@@ -8,52 +8,204 @@
   <meta property="og:description" content="7+ years designing complex, data-intensive systems across Industrial Automation, Fintech, SaaS, and Enterprise platforms." />
   <meta property="og:type" content="website" />
   <title>Thomas Ravi Kiran | Senior UX Engineer & Product Designer</title>
-
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css" />
+    /* ── Tokens ── */
+    :root {
+      --ink:    #1a1a18;
+      --ink2:   #4a4a48;
+      --ink3:   #888780;
+      --bg:     #fafaf8;
+      --bg2:    #f1efe8;
+      --bg3:    #ffffff;
+      --accent: #185FA5;
+      --border: rgba(0,0,0,0.1);
+      --ff:     'Inter', system-ui, sans-serif;
+      --serif:  'Lora', Georgia, serif;
+      --nav-h:  56px;
+    }
+
+    /* ── Base ── */
+    body { font-family: var(--ff); background: var(--bg); color: var(--ink); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--ff); cursor: pointer; }
+
+    /* ── Page routing ── */
+    .page { display: none; min-height: 100vh; }
+    .page.active { display: block; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg); border-bottom: 0.5px solid var(--border);
+      padding: 0 2.5rem; height: var(--nav-h);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-size: 14px; font-weight: 500; letter-spacing: -0.01em; cursor: pointer; user-select: none; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links span { font-size: 13px; color: var(--ink2); cursor: pointer; transition: color 0.15s; }
+    .nav-links span:hover { color: var(--ink); }
+    .nav-cta { background: var(--ink) !important; color: #fff !important; padding: 6px 16px; border-radius: 20px; font-size: 13px; transition: opacity 0.15s; }
+    .nav-cta:hover { opacity: 0.82; }
+
+    /* ── Buttons ── */
+    .btn-primary { background: var(--ink); color: #fff; border: none; padding: 10px 22px; border-radius: 4px; font-size: 14px; transition: opacity 0.15s; }
+    .btn-primary:hover { opacity: 0.82; }
+    .btn-ghost { background: transparent; color: var(--ink2); border: 0.5px solid var(--border); padding: 10px 22px; border-radius: 4px; font-size: 14px; transition: background 0.15s; }
+    .btn-ghost:hover { background: var(--bg2); }
+    .btn-ghost.on-dark { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.2); }
+    .btn-ghost.on-dark:hover { background: rgba(255,255,255,0.08); }
+
+    /* ── Shared chrome ── */
+    .section-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink3); margin-bottom: 2.5rem; padding-bottom: 1rem; border-bottom: 0.5px solid var(--border); }
+    .pill { font-size: 11px; padding: 3px 10px; border-radius: 20px; background: var(--bg2); color: var(--ink2); }
+
+    /* ── Hero ── */
+    .hero { max-width: 900px; margin: 0 auto; padding: 7rem 2.5rem 5rem; }
+    .hero-tag { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink3); margin-bottom: 1.5rem; }
+    .hero h1 { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 400; line-height: 1.12; letter-spacing: -0.03em; max-width: 720px; margin-bottom: 1.5rem; }
+    .hero h1 em { font-style: italic; color: var(--ink2); }
+    .hero-sub { font-size: 16px; color: var(--ink2); max-width: 520px; line-height: 1.7; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* ── Clients ── */
+    .clients { max-width: 900px; margin: 0 auto; padding: 3rem 2.5rem 5rem; border-top: 0.5px solid var(--border); }
+    .clients-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink3); margin-bottom: 1.5rem; }
+    .client-list { display: flex; flex-wrap: wrap; gap: 2.5rem; align-items: center; }
+    .client-name { font-size: 14px; color: var(--ink3); font-weight: 500; letter-spacing: 0.02em; }
+
+    /* ── Case study grid ── */
+    .section { max-width: 900px; margin: 0 auto; padding: 5rem 2.5rem; }
+    .cs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
+    .cs-card { background: var(--bg3); padding: 2.5rem; cursor: pointer; transition: background 0.15s; position: relative; }
+    .cs-card:hover { background: var(--bg2); }
+    .cs-tag { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink3); margin-bottom: 1.2rem; }
+    .cs-card h3 { font-family: var(--serif); font-size: 1.25rem; font-weight: 400; letter-spacing: -0.01em; margin-bottom: 0.8rem; line-height: 1.3; }
+    .cs-card p { font-size: 13px; color: var(--ink2); line-height: 1.6; margin-bottom: 1.5rem; }
+    .cs-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+    .cs-arrow { position: absolute; top: 2.5rem; right: 2.5rem; color: var(--ink3); font-size: 18px; transition: transform 0.15s; }
+    .cs-card:hover .cs-arrow { transform: translate(3px,-3px); }
+
+    /* ── Skills ── */
+    .skills-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
+    .skill-item h4 { font-size: 14px; font-weight: 500; margin-bottom: 0.5rem; }
+    .skill-item p  { font-size: 13px; color: var(--ink2); line-height: 1.6; }
+
+    /* ── About strip (dark) ── */
+    .about-strip { background: var(--ink); color: #fff; padding: 6rem 2.5rem; }
+    .about-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .about-strip h2 { font-family: var(--serif); font-size: clamp(1.5rem,3vw,2.2rem); font-weight: 400; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+    .about-strip p { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.65); margin-bottom: 1rem; }
+    .about-facts { display: flex; flex-direction: column; gap: 2rem; }
+    .fact-num { font-family: var(--serif); font-size: 2.8rem; font-weight: 400; letter-spacing: -0.03em; line-height: 1; }
+    .fact-label { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 4px; }
+
+    /* ── Footer ── */
+    footer { max-width: 900px; margin: 0 auto; padding: 2.5rem; border-top: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    footer p { font-size: 13px; color: var(--ink3); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links span { font-size: 13px; color: var(--ink2); cursor: pointer; transition: color 0.15s; }
+    .footer-links span:hover { color: var(--ink); }
+
+    /* ── Case study page ── */
+    .cs-hero { max-width: 900px; margin: 0 auto; padding: 4rem 2.5rem 3rem; }
+    .cs-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--ink2); cursor: pointer; margin-bottom: 2.5rem; transition: color 0.15s; background: none; border: none; }
+    .cs-back:hover { color: var(--ink); }
+    .cs-hero-tag { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink3); margin-bottom: 1.2rem; }
+    .cs-hero h1 { font-family: var(--serif); font-size: clamp(1.8rem,4vw,2.8rem); font-weight: 400; letter-spacing: -0.025em; line-height: 1.2; margin-bottom: 2rem; }
+    .cs-meta-row { display: flex; gap: 3rem; flex-wrap: wrap; padding: 1.5rem 0; border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); margin-bottom: 3rem; }
+    .cs-meta-item label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink3); display: block; margin-bottom: 4px; }
+    .cs-meta-item span  { font-size: 13px; color: var(--ink); }
+    .cs-banner { width: 100%; height: 320px; display: flex; align-items: center; justify-content: center; }
+    .cs-banner-inner { text-align: center; }
+    .cs-banner-icon  { font-size: 5rem; opacity: 0.25; margin-bottom: 1rem; }
+    .cs-banner-label { font-size: 13px; color: var(--ink3); }
+    .outcome-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); margin-bottom: 3rem; }
+    .outcome-cell { background: var(--bg3); padding: 1.5rem; }
+    .outcome-num  { font-family: var(--serif); font-size: 2.2rem; font-weight: 400; letter-spacing: -0.02em; line-height: 1; }
+    .outcome-label { font-size: 12px; color: var(--ink3); margin-top: 6px; }
+    .cs-content { max-width: 900px; margin: 0 auto; padding: 3rem 2.5rem 5rem; }
+    .cs-body    { max-width: 620px; }
+    .cs-body h2 { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; letter-spacing: -0.015em; margin: 3rem 0 1rem; line-height: 1.3; }
+    .cs-body h2:first-child { margin-top: 0; }
+    .cs-body p  { font-size: 15px; line-height: 1.8; color: var(--ink2); margin-bottom: 1.25rem; }
+    .cs-body ul { margin: 0 0 1.25rem 1.25rem; }
+    .cs-body li { font-size: 15px; line-height: 1.8; color: var(--ink2); margin-bottom: 0.4rem; }
+    .next-cs { background: var(--bg2); padding: 2.5rem; cursor: pointer; border-top: 0.5px solid var(--border); transition: background 0.15s; }
+    .next-cs:hover { background: var(--bg); }
+    .next-cs-inner { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .next-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink3); margin-bottom: 0.5rem; }
+    .next-title { font-family: var(--serif); font-size: 1.15rem; font-weight: 400; }
+    .next-arrow { font-size: 1.5rem; color: var(--ink3); }
+
+    /* ── About page ── */
+    .about-page { max-width: 900px; margin: 0 auto; padding: 5rem 2.5rem; }
+    .about-page h1 { font-family: var(--serif); font-size: clamp(2rem,4vw,3rem); font-weight: 400; letter-spacing: -0.03em; margin-bottom: 2rem; max-width: 680px; line-height: 1.15; }
+    .about-page > p { font-size: 16px; line-height: 1.8; color: var(--ink2); max-width: 600px; margin-bottom: 1.5rem; }
+    .tl-item { display: grid; grid-template-columns: 160px 1fr; gap: 2rem; padding: 2rem 0; border-top: 0.5px solid var(--border); }
+    .tl-year { font-size: 13px; color: var(--ink3); padding-top: 2px; }
+    .tl-item h4 { font-size: 14px; font-weight: 500; margin-bottom: 0.4rem; }
+    .tl-item p  { font-size: 13px; color: var(--ink2); line-height: 1.65; }
+
+    /* ── Contact page ── */
+    .contact-page { max-width: 900px; margin: 0 auto; padding: 5rem 2.5rem; }
+    .contact-page h1 { font-family: var(--serif); font-size: clamp(2rem,4vw,3rem); font-weight: 400; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
+    .contact-page > p { font-size: 16px; color: var(--ink2); max-width: 520px; line-height: 1.7; margin-bottom: 3rem; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); margin-bottom: 3.5rem; }
+    .contact-cell { background: var(--bg3); padding: 2rem; }
+    .contact-cell label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink3); display: block; margin-bottom: 0.6rem; }
+    .contact-cell a { font-size: 15px; color: var(--accent); }
+    .contact-cell a:hover { text-decoration: underline; }
+    .cell-val  { font-size: 15px; color: var(--ink); }
+    .cell-sub  { font-size: 13px; color: var(--ink3); margin-top: 2px; }
+    .contact-note { font-size: 14px; color: var(--ink3); max-width: 480px; line-height: 1.7; margin-bottom: 1.5rem; }
+
+    /* ── Responsive ── */
+    @media (max-width: 680px) {
+      nav { padding: 0 1.25rem; }
+      .hero, .clients, .section, .cs-hero, .cs-content, .about-page, .contact-page { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .cs-grid, .skills-grid, .about-inner, .contact-grid, .outcome-grid { grid-template-columns: 1fr; }
+      .about-inner { gap: 3rem; }
+      .cs-meta-row { gap: 1.5rem; }
+      .tl-item { grid-template-columns: 1fr; gap: 0.4rem; }
+      .about-strip { padding: 4rem 1.25rem; }
+      .next-cs { padding: 2rem 1.25rem; }
+      footer { flex-direction: column; gap: 1rem; align-items: flex-start; }
+    }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
 </head>
 <body>
 
-<!-- ════════════════════════════════════════════════════════════════════════
-     HOME PAGE
-════════════════════════════════════════════════════════════════════════ -->
+<!-- ════════════ HOME ════════════ -->
 <div class="page active" id="pg-home">
-
   <nav role="navigation" aria-label="Main">
-    <span class="nav-logo" onclick="showPage('home')" role="link" tabindex="0"
-          onkeydown="if(event.key==='Enter')showPage('home')">Thomas Ravi Kiran</span>
+    <span class="nav-logo" onclick="showPage('home')" tabindex="0" onkeydown="if(event.key==='Enter')showPage('home')">Thomas Ravi Kiran</span>
     <div class="nav-links">
-      <span onclick="showPage('home')" tabindex="0"
-            onkeydown="if(event.key==='Enter')showPage('home')">Work</span>
-      <span onclick="showPage('about')" tabindex="0"
-            onkeydown="if(event.key==='Enter')showPage('about')">About</span>
-      <span class="nav-cta" onclick="showPage('contact')" tabindex="0"
-            onkeydown="if(event.key==='Enter')showPage('contact')">Get in touch</span>
+      <span onclick="showPage('home')"    tabindex="0" onkeydown="if(event.key==='Enter')showPage('home')">Work</span>
+      <span onclick="showPage('about')"   tabindex="0" onkeydown="if(event.key==='Enter')showPage('about')">About</span>
+      <span onclick="showPage('contact')" tabindex="0" onkeydown="if(event.key==='Enter')showPage('contact')" class="nav-cta">Get in touch</span>
     </div>
   </nav>
 
-  <main id="main">
-
-    <!-- Hero -->
-    <section class="hero" aria-label="Introduction">
+  <main>
+    <section class="hero">
       <div class="hero-tag">Senior UX Engineer &amp; Product Designer · Bangalore, India · Available immediately</div>
       <h1>Bridging <em>system intelligence</em> with human decision-making.</h1>
       <p class="hero-sub">7+ years designing complex, data-intensive systems across Industrial Automation, Fintech, SaaS, and Enterprise platforms. Specialist in AI + Automation UX.</p>
       <div class="hero-actions">
-        <button class="btn-primary"
-                onclick="document.getElementById('cs-anchor').scrollIntoView({behavior:'smooth'})">
-          View case studies
-        </button>
-        <button class="btn-ghost" onclick="showPage('about')">About me</button>
+        <button class="btn-primary" onclick="document.getElementById('cs-anchor').scrollIntoView({behavior:'smooth'})">View case studies</button>
+        <button class="btn-ghost"   onclick="showPage('about')">About me</button>
       </div>
     </section>
 
-    <!-- Clients -->
     <div class="clients">
       <div class="clients-label">Companies I've worked with</div>
       <div class="client-list">
@@ -65,72 +217,41 @@
       </div>
     </div>
 
-    <!-- Case studies -->
-    <section class="section" id="cs-anchor" aria-label="Case studies">
+    <section class="section" id="cs-anchor">
       <div class="section-label">Case studies</div>
-      <div class="cs-grid" role="list">
-
-        <article class="cs-card" role="listitem" onclick="showCase(0)"
-                 tabindex="0" onkeydown="if(event.key==='Enter')showCase(0)"
-                 aria-label="Case study: Evolving ABB's industrial HMI">
+      <div class="cs-grid">
+        <article class="cs-card" onclick="showCase(0)" tabindex="0" onkeydown="if(event.key==='Enter')showCase(0)">
           <div class="cs-tag">Industrial Automation · AI/UX · Enterprise</div>
           <h3>Evolving a 15-year-old industrial HMI into an AI-augmented automation platform</h3>
           <p>Led end-to-end UX strategy for ABB Ability System 800xA — improving operator decision-making speed by 25–35%.</p>
-          <div class="cs-pills">
-            <span class="pill">AI + Automation</span>
-            <span class="pill">HMI</span>
-            <span class="pill">Design systems</span>
-          </div>
+          <div class="cs-pills"><span class="pill">AI + Automation</span><span class="pill">HMI</span><span class="pill">Design systems</span></div>
           <span class="cs-arrow" aria-hidden="true">↗</span>
         </article>
-
-        <article class="cs-card" role="listitem" onclick="showCase(1)"
-                 tabindex="0" onkeydown="if(event.key==='Enter')showCase(1)"
-                 aria-label="Case study: Fintech conversion at Autovert">
+        <article class="cs-card" onclick="showCase(1)" tabindex="0" onkeydown="if(event.key==='Enter')showCase(1)">
           <div class="cs-tag">Fintech · B2C · E-Commerce</div>
           <h3>Driving conversion and trust across B2C and NBFC fintech applications</h3>
           <p>Led UX for e-commerce and lending products at Autovert, earning Best Employee of the Year 2025.</p>
-          <div class="cs-pills">
-            <span class="pill">Fintech</span>
-            <span class="pill">Conversion</span>
-            <span class="pill">Design systems</span>
-          </div>
+          <div class="cs-pills"><span class="pill">Fintech</span><span class="pill">Conversion</span><span class="pill">Design systems</span></div>
           <span class="cs-arrow" aria-hidden="true">↗</span>
         </article>
-
-        <article class="cs-card" role="listitem" onclick="showCase(2)"
-                 tabindex="0" onkeydown="if(event.key==='Enter')showCase(2)"
-                 aria-label="Case study: Global procurement UX at Kinlong">
+        <article class="cs-card" onclick="showCase(2)" tabindex="0" onkeydown="if(event.key==='Enter')showCase(2)">
           <div class="cs-tag">B2B/B2C · Global Markets · SaaS</div>
           <h3>Designing scalable procurement and e-commerce UX across 5 global markets</h3>
           <p>Built culturally adaptive, accessibility-focused interfaces for India, Vietnam, Philippines, and Sri Lanka.</p>
-          <div class="cs-pills">
-            <span class="pill">Procurement</span>
-            <span class="pill">Accessibility</span>
-            <span class="pill">Internationalisation</span>
-          </div>
+          <div class="cs-pills"><span class="pill">Procurement</span><span class="pill">Accessibility</span><span class="pill">Internationalisation</span></div>
           <span class="cs-arrow" aria-hidden="true">↗</span>
         </article>
-
-        <article class="cs-card" role="listitem" onclick="showCase(3)"
-                 tabindex="0" onkeydown="if(event.key==='Enter')showCase(3)"
-                 aria-label="Case study: Brand and UX strategy at SPT Groups">
+        <article class="cs-card" onclick="showCase(3)" tabindex="0" onkeydown="if(event.key==='Enter')showCase(3)">
           <div class="cs-tag">Brand · UX/UI · Strategy</div>
           <h3>Full-cycle UX, brand, and digital strategy as Fractional CMO</h3>
           <p>Delivered end-to-end design and brand strategy across multiple product lines at SPT Groups.</p>
-          <div class="cs-pills">
-            <span class="pill">Brand strategy</span>
-            <span class="pill">UI/UX</span>
-            <span class="pill">Marketing</span>
-          </div>
+          <div class="cs-pills"><span class="pill">Brand strategy</span><span class="pill">UI/UX</span><span class="pill">Marketing</span></div>
           <span class="cs-arrow" aria-hidden="true">↗</span>
         </article>
-
       </div>
     </section>
 
-    <!-- Capabilities -->
-    <section class="section" style="padding-top:0" aria-label="Capabilities">
+    <section class="section" style="padding-top:0">
       <div class="section-label">Capabilities</div>
       <div class="skills-grid">
         <div class="skill-item">
@@ -148,34 +269,21 @@
       </div>
     </section>
 
-    <!-- About strip -->
-    <section class="about-strip" aria-label="About">
+    <section class="about-strip">
       <div class="about-inner">
         <div>
           <h2>The hardest UX problems live where machines and humans have to trust each other.</h2>
           <p>Working on industrial automation at ABB taught me that the stakes in enterprise design are real: an operator making a slower decision because of a confusing interface costs more than a bad conversion rate.</p>
           <p>I bring a hybrid background — BCA, front-end development, and 7+ years of product design — to every engagement. I don't just hand off specs; I close the gap between design intent and what actually ships.</p>
-          <button class="btn-ghost on-dark" style="margin-top:1rem" onclick="showPage('about')">
-            More about me
-          </button>
+          <button class="btn-ghost on-dark" style="margin-top:1rem" onclick="showPage('about')">More about me</button>
         </div>
         <div class="about-facts">
-          <div>
-            <div class="fact-num">7+</div>
-            <div class="fact-label">Years in UX &amp; product design</div>
-          </div>
-          <div>
-            <div class="fact-num">5</div>
-            <div class="fact-label">Global markets designed for</div>
-          </div>
-          <div>
-            <div class="fact-num">2×</div>
-            <div class="fact-label">Best Employee of the Year</div>
-          </div>
+          <div><div class="fact-num">7+</div><div class="fact-label">Years in UX &amp; product design</div></div>
+          <div><div class="fact-num">5</div><div class="fact-label">Global markets designed for</div></div>
+          <div><div class="fact-num">2×</div><div class="fact-label">Best Employee of the Year</div></div>
         </div>
       </div>
     </section>
-
   </main>
 
   <footer>
@@ -189,24 +297,16 @@
 </div>
 
 
-<!-- ════════════════════════════════════════════════════════════════════════
-     CASE STUDY PAGE
-════════════════════════════════════════════════════════════════════════ -->
+<!-- ════════════ CASE STUDY ════════════ -->
 <div class="page" id="pg-case">
-
   <nav role="navigation" aria-label="Main">
-    <span class="nav-logo" onclick="showPage('home')" role="link" tabindex="0"
-          onkeydown="if(event.key==='Enter')showPage('home')">Thomas Ravi Kiran</span>
+    <span class="nav-logo" onclick="showPage('home')" tabindex="0" onkeydown="if(event.key==='Enter')showPage('home')">Thomas Ravi Kiran</span>
     <div class="nav-links">
-      <span onclick="showPage('home')" tabindex="0"
-            onkeydown="if(event.key==='Enter')showPage('home')">Work</span>
-      <span onclick="showPage('about')" tabindex="0"
-            onkeydown="if(event.key==='Enter')showPage('about')">About</span>
-      <span class="nav-cta" onclick="showPage('contact')" tabindex="0"
-            onkeydown="if(event.key==='Enter')showPage('contact')">Get in touch</span>
+      <span onclick="showPage('home')"    tabindex="0" onkeydown="if(event.key==='Enter')showPage('home')">Work</span>
+      <span onclick="showPage('about')"   tabindex="0" onkeydown="if(event.key==='Enter')showPage('about')">About</span>
+      <span onclick="showPage('contact')" tabindex="0" onkeydown="if(event.key==='Enter')showPage('contact')" class="nav-cta">Get in touch</span>
     </div>
   </nav>
-
   <main>
     <div class="cs-hero">
       <button class="cs-back" onclick="showPage('home')">← All work</button>
@@ -219,21 +319,17 @@
         <div class="cs-meta-item"><label>Duration</label><span id="cs-duration"></span></div>
       </div>
     </div>
-
-    <div class="cs-banner" id="cs-banner" role="img" aria-label="Case study illustration">
+    <div class="cs-banner" id="cs-banner">
       <div class="cs-banner-inner">
-        <div class="cs-banner-icon" id="cs-icon" aria-hidden="true"></div>
+        <div class="cs-banner-icon"  id="cs-icon"         aria-hidden="true"></div>
         <div class="cs-banner-label" id="cs-banner-label"></div>
       </div>
     </div>
-
     <div class="cs-content">
-      <div class="outcome-grid" id="cs-outcomes" aria-label="Key outcomes"></div>
-      <div class="cs-body" id="cs-body"></div>
+      <div class="outcome-grid" id="cs-outcomes"></div>
+      <div class="cs-body"      id="cs-body"></div>
     </div>
-
-    <div class="next-cs" onclick="nextCase()" role="button" tabindex="0"
-         onkeydown="if(event.key==='Enter')nextCase()">
+    <div class="next-cs" onclick="nextCase()" role="button" tabindex="0" onkeydown="if(event.key==='Enter')nextCase()">
       <div class="next-cs-inner">
         <div>
           <div class="next-label">Next case study</div>
@@ -243,7 +339,6 @@
       </div>
     </div>
   </main>
-
   <footer>
     <p>© 2026 Thomas Ravi Kiran</p>
     <div class="footer-links">
@@ -255,35 +350,25 @@
 </div>
 
 
-<!-- ════════════════════════════════════════════════════════════════════════
-     ABOUT PAGE
-════════════════════════════════════════════════════════════════════════ -->
+<!-- ════════════ ABOUT ════════════ -->
 <div class="page" id="pg-about">
-
   <nav role="navigation" aria-label="Main">
-    <span class="nav-logo" onclick="showPage('home')" role="link" tabindex="0"
-          onkeydown="if(event.key==='Enter')showPage('home')">Thomas Ravi Kiran</span>
+    <span class="nav-logo" onclick="showPage('home')" tabindex="0" onkeydown="if(event.key==='Enter')showPage('home')">Thomas Ravi Kiran</span>
     <div class="nav-links">
-      <span onclick="showPage('home')" tabindex="0"
-            onkeydown="if(event.key==='Enter')showPage('home')">Work</span>
-      <span onclick="showPage('about')" tabindex="0" style="color:var(--ink)"
-            onkeydown="if(event.key==='Enter')showPage('about')">About</span>
-      <span class="nav-cta" onclick="showPage('contact')" tabindex="0"
-            onkeydown="if(event.key==='Enter')showPage('contact')">Get in touch</span>
+      <span onclick="showPage('home')"    tabindex="0" onkeydown="if(event.key==='Enter')showPage('home')">Work</span>
+      <span onclick="showPage('about')"   tabindex="0" onkeydown="if(event.key==='Enter')showPage('about')" style="color:var(--ink)">About</span>
+      <span onclick="showPage('contact')" tabindex="0" onkeydown="if(event.key==='Enter')showPage('contact')" class="nav-cta">Get in touch</span>
     </div>
   </nav>
-
   <main>
     <div class="about-page">
       <h1>I design the interfaces that industrial operators, financial users, and enterprise teams rely on every day.</h1>
-
       <p>My background is unusual: a BCA in computer applications, certified in graphic design, and then seven years of product design work that has taken me from VR showrooms to AI-augmented industrial control systems. I understand how design decisions become engineering constraints, because I've written the HTML, CSS, and React myself.</p>
       <p>I work best in complex, high-stakes domains — places where the data is dense, the users are expert, and a confusing interface has real consequences. I bring research rigour, systems thinking, and hands-on delivery to every project.</p>
       <p>Currently based in Bangalore. Available immediately for full-time or contract roles.</p>
 
       <div style="margin-top:3.5rem">
         <div class="section-label">Experience</div>
-
         <div class="tl-item">
           <div class="tl-year">Oct 2025 – Jun 2026</div>
           <div>
@@ -291,7 +376,6 @@
             <p>Led end-to-end UX strategy for ABB Ability System 800xA, an AI-augmented industrial automation platform. Defined the Human + AI Collaboration Model, conducted UX research and heuristic evaluations, and partnered with global engineering teams to close design-to-development gaps.</p>
           </div>
         </div>
-
         <div class="tl-item">
           <div class="tl-year">Oct 2024 – Oct 2025</div>
           <div>
@@ -299,7 +383,6 @@
             <p>Led UX for B2C e-commerce and NBFC fintech applications. Conducted UX audits aligned with business KPIs, scaled design systems across product lines, and mentored junior designers. Awarded Best Employee of the Year 2025.</p>
           </div>
         </div>
-
         <div class="tl-item">
           <div class="tl-year">Aug 2022 – Oct 2024</div>
           <div>
@@ -307,7 +390,6 @@
             <p>Designed scalable UI/UX for procurement software, B2B/B2C e-commerce, and mobile applications across India, Vietnam, Philippines, and Sri Lanka. Built culturally adaptive, accessibility-focused interfaces and integrated assistive technology into VR showroom experiences. Awarded Best Employee of the Year 2023.</p>
           </div>
         </div>
-
         <div class="tl-item">
           <div class="tl-year">Jun 2020 – Jun 2022</div>
           <div>
@@ -320,33 +402,28 @@
       <div style="margin-top:3rem;padding-top:3rem;border-top:0.5px solid var(--border)">
         <div class="section-label">Education &amp; certifications</div>
         <p style="font-size:14px;color:var(--ink2);max-width:560px;line-height:1.7">
-          Bachelor in Computer Application, IEC University (2019).
-          Certified in Graphic Design — Print &amp; Publishing, Arena Animation (2016).
+          Bachelor in Computer Application, IEC University (2019).<br>
+          Certified in Graphic Design — Print &amp; Publishing, Arena Animation (2016).<br>
           +2 in Maths &amp; Computer Science (2013).
         </p>
       </div>
 
       <div style="margin-top:3rem;padding-top:3rem;border-top:0.5px solid var(--border)">
         <div class="section-label">Tools &amp; stack</div>
-        <p style="font-size:14px;color:var(--ink2);max-width:600px;line-height:1.9">
-          <strong style="font-weight:500;color:var(--ink)">Design:</strong>
-          Figma, Adobe XD, Sketch, ProtoPie, InVision / Zeplin, Adobe Suite (PS · AI · AE · PR)<br>
-          <strong style="font-weight:500;color:var(--ink)">Research:</strong>
-          FigJam, Orange Data Mining, Usability Testing, Heuristic Evaluation, Stakeholder Interviews, A/B Testing<br>
-          <strong style="font-weight:500;color:var(--ink)">Dev &amp; systems:</strong>
-          HTML, CSS, React, Material UI, APUX, Arcadia, ANT, Element, Azure, Jira, Miro<br>
-          <strong style="font-weight:500;color:var(--ink)">AI tools:</strong>
-          Claude, ChatGPT, Figma AI
+        <p style="font-size:14px;color:var(--ink2);max-width:600px;line-height:2">
+          <strong style="font-weight:500;color:var(--ink)">Design:</strong> Figma, Adobe XD, Sketch, ProtoPie, InVision / Zeplin, Adobe Suite (PS · AI · AE · PR)<br>
+          <strong style="font-weight:500;color:var(--ink)">Research:</strong> FigJam, Orange Data Mining, Usability Testing, Heuristic Evaluation, Stakeholder Interviews, A/B Testing<br>
+          <strong style="font-weight:500;color:var(--ink)">Dev &amp; systems:</strong> HTML, CSS, React, Material UI, APUX, Arcadia, ANT, Element, Azure, Jira, Miro<br>
+          <strong style="font-weight:500;color:var(--ink)">AI tools:</strong> Claude, ChatGPT, Figma AI
         </p>
       </div>
 
       <div style="margin-top:3rem;display:flex;gap:1rem;flex-wrap:wrap">
         <button class="btn-primary" onclick="showPage('home')">View my work</button>
-        <button class="btn-ghost" onclick="showPage('contact')">Get in touch</button>
+        <button class="btn-ghost"   onclick="showPage('contact')">Get in touch</button>
       </div>
     </div>
   </main>
-
   <footer>
     <p>© 2026 Thomas Ravi Kiran</p>
     <div class="footer-links">
@@ -357,29 +434,20 @@
 </div>
 
 
-<!-- ════════════════════════════════════════════════════════════════════════
-     CONTACT PAGE
-════════════════════════════════════════════════════════════════════════ -->
+<!-- ════════════ CONTACT ════════════ -->
 <div class="page" id="pg-contact">
-
   <nav role="navigation" aria-label="Main">
-    <span class="nav-logo" onclick="showPage('home')" role="link" tabindex="0"
-          onkeydown="if(event.key==='Enter')showPage('home')">Thomas Ravi Kiran</span>
+    <span class="nav-logo" onclick="showPage('home')" tabindex="0" onkeydown="if(event.key==='Enter')showPage('home')">Thomas Ravi Kiran</span>
     <div class="nav-links">
-      <span onclick="showPage('home')" tabindex="0"
-            onkeydown="if(event.key==='Enter')showPage('home')">Work</span>
-      <span onclick="showPage('about')" tabindex="0"
-            onkeydown="if(event.key==='Enter')showPage('about')">About</span>
-      <span class="nav-cta" onclick="showPage('contact')" tabindex="0"
-            onkeydown="if(event.key==='Enter')showPage('contact')">Get in touch</span>
+      <span onclick="showPage('home')"    tabindex="0" onkeydown="if(event.key==='Enter')showPage('home')">Work</span>
+      <span onclick="showPage('about')"   tabindex="0" onkeydown="if(event.key==='Enter')showPage('about')">About</span>
+      <span onclick="showPage('contact')" tabindex="0" onkeydown="if(event.key==='Enter')showPage('contact')" class="nav-cta">Get in touch</span>
     </div>
   </nav>
-
   <main>
     <div class="contact-page">
       <h1>Let's work together.</h1>
       <p>I'm available immediately for Senior UX Engineer, Product Designer, or AI/UX specialist roles — full-time or contract, on-site or remote.</p>
-
       <div class="contact-grid">
         <div class="contact-cell">
           <label>Email</label>
@@ -387,9 +455,7 @@
         </div>
         <div class="contact-cell">
           <label>Portfolio</label>
-          <a href="https://behance.net/colorinkbottle" target="_blank" rel="noopener">
-            behance.net/colorinkbottle ↗
-          </a>
+          <a href="https://behance.net/colorinkbottle" target="_blank" rel="noopener">behance.net/colorinkbottle ↗</a>
         </div>
         <div class="contact-cell">
           <label>Phone</label>
@@ -401,14 +467,10 @@
           <div class="cell-sub">Available immediately · Open to relocation</div>
         </div>
       </div>
-
-      <p class="contact-note">
-        Prefer to see the work first? Browse the case studies to understand how I approach complex problems, then reach out with a brief about the role or project.
-      </p>
+      <p class="contact-note">Prefer to see the work first? Browse the case studies to understand how I approach complex problems, then reach out with a brief about the role or project.</p>
       <button class="btn-primary" onclick="showPage('home')">View case studies</button>
     </div>
   </main>
-
   <footer>
     <p>© 2026 Thomas Ravi Kiran</p>
     <div class="footer-links">
@@ -418,7 +480,147 @@
   </footer>
 </div>
 
-<!-- JavaScript — loaded last so DOM is ready -->
-<script src="script.js"></script>
+
+<!-- ════════════ JAVASCRIPT ════════════ -->
+<script>
+  /* ── Case study data ── */
+  const cases = [
+    {
+      tag: 'Industrial Automation · AI/UX · Enterprise HMI',
+      title: 'Evolving a 15-year-old industrial HMI into an AI-augmented automation platform',
+      role: 'Senior UX Engineer', client: 'Quest Global (Client: ABB)',
+      year: 'Oct 2025 – Jun 2026', duration: '9 months',
+      icon: '⬡', bannerBg: '#e6f1fb',
+      bannerLabel: 'ABB Ability System 800xA — AI-augmented industrial control platform',
+      outcomes: [
+        { n:'25–35%', l:'improvement in operator decision-making speed' },
+        { n:'15 yrs',  l:'of legacy HMI complexity untangled' },
+        { n:'1',       l:'unified Human + AI Collaboration Model defined' }
+      ],
+      sections: [
+        { h:'The challenge', t:"ABB's System 800xA is one of the most widely deployed industrial automation platforms in the world. But its operator interface had accumulated 15 years of legacy decisions — dense data layouts, inconsistent workflows, and a growing gap between what the system could tell operators and what operators could actually act on in time. The brief was to modernise the HMI and introduce AI-driven capabilities without disrupting the deeply ingrained workflows of expert operators." },
+        { h:'Research and discovery', t:'I led UX research including stakeholder interviews with domain experts, engineers, and operators across global sites. Heuristic evaluations against established industrial UX standards revealed the highest-friction points in the operator journey — not always where leadership expected them.', items:['Conducted heuristic evaluations across complex industrial workflows','Interviewed operators, engineers, and domain experts across sites','Mapped cognitive load hotspots in data-heavy dashboard interfaces','Identified where AI-generated insights were landing without context, causing operator hesitation'] },
+        { h:'Defining the Human + AI Collaboration Model', t:"The core design challenge was trust — how to surface AI-driven predictions and recommendations in a way that augmented operator judgment rather than competing with it. I defined a collaboration model that distinguished between AI as a background analyst, AI as an alert system, and AI as a recommendation engine — each with distinct visual and interaction patterns so operators always understood what level of system confidence they were acting on." },
+        { h:'Design and delivery', t:"I created high-fidelity wireframes, user flows, and prototypes aligned with ABB's enterprise design systems (APUX and Arcadia). Partnering with global engineering teams, I closed design-to-development gaps through embedded collaboration rather than waterfall handoffs. I also led Agile/Scrum workflows, sprint planning, and mentored junior UX designers on the team.", items:['Reduced cognitive load on data-heavy interfaces through progressive disclosure and contextual AI panels','Built scalable UX documentation and reusable component patterns for enterprise-scale development','Developed design guidelines that extended APUX and Arcadia without conflicting with them'] }
+      ]
+    },
+    {
+      tag: 'Fintech · B2C E-Commerce · NBFC',
+      title: 'Driving conversion and trust across B2C and NBFC fintech applications',
+      role: 'Senior Product Designer', client: 'Autovert Technologies',
+      year: 'Oct 2024 – Oct 2025', duration: '1 year',
+      icon: '◎', bannerBg: '#eaf3de',
+      bannerLabel: 'B2C e-commerce and lending products — Autovert Technologies',
+      outcomes: [
+        { n:'↑',    l:'online conversion rates improved' },
+        { n:'WCAG', l:'accessibility standards met across products' },
+        { n:'2025', l:'Best Employee of the Year' }
+      ],
+      sections: [
+        { h:'The context', t:'Autovert operates across B2C e-commerce and NBFC fintech verticals — two product categories with very different user expectations but shared infrastructure. The UX needed to build trust at the point of financial commitment while also driving commercial conversion metrics.' },
+        { h:'UX audits tied to business KPIs', t:'I conducted end-to-end UX audits across the product suite, explicitly mapping usability issues to business metrics — drop-off rates, abandonment points, error rates in loan application flows.', items:['Mapped friction points in multi-step loan application flows to quantified abandonment data','Identified accessibility gaps creating barriers for first-time digital finance users','Prioritised fixes by potential revenue impact, not just severity rating'] },
+        { h:'Design system stewardship', t:'I maintained and scaled the design system across multiple product lines and teams, ensuring consistency as the product suite grew. I ran design scrums, coordinated with development and QA for pixel-perfect implementation, and mentored design interns and junior designers.' }
+      ]
+    },
+    {
+      tag: 'B2B/B2C · Procurement · Global Markets',
+      title: 'Designing scalable procurement and e-commerce UX across 5 global markets',
+      role: 'UI/UX Engineer', client: 'Kinlong Hardware',
+      year: 'Aug 2022 – Oct 2024', duration: '2.3 years',
+      icon: '◈', bannerBg: '#faeeda',
+      bannerLabel: 'Procurement software and e-commerce — India, Vietnam, Philippines, Sri Lanka',
+      outcomes: [
+        { n:'5',    l:'global markets designed for simultaneously' },
+        { n:'6+',   l:'product surfaces including VR showroom' },
+        { n:'2023', l:'Best Employee of the Year' }
+      ],
+      sections: [
+        { h:'The scope', t:'Kinlong Hardware is a global manufacturer with market-specific e-commerce and procurement channels across Asia. The design challenge: the same product catalogue, purchasing workflows, and account management features had to work intuitively for users across countries with different languages, browsing conventions, and levels of digital literacy.' },
+        { h:'Culturally adaptive design', t:'I led a user-centric design process — research, usability testing, and data-driven iteration — for each market adaptation. This was not simple localisation. It required rethinking layout density, navigation hierarchy, and trust signals for each audience.', items:['Built accessibility-focused interfaces for diverse international audiences','Designed B2B procurement flows for professional purchasers alongside B2C product browsing','Integrated assistive technology into VR showroom experiences','Maintained consistent brand and UX quality across mobile and desktop surfaces'] },
+        { h:'VR showroom integration', t:"One of the more distinctive projects within this role was supporting the design of a VR product showroom with assistive technology integration — requiring spatial UX thinking alongside traditional screen-based conventions." }
+      ]
+    },
+    {
+      tag: 'Brand Strategy · UX/UI · Digital Marketing',
+      title: 'Full-cycle UX, brand, and digital strategy as Fractional CMO',
+      role: 'UX/UI & Graphic Designer, Fractional CMO', client: 'SPT Groups',
+      year: 'Jun 2020 – Jun 2022', duration: '2 years',
+      icon: '◇', bannerBg: '#fbeaf0',
+      bannerLabel: 'Brand strategy and product design across multiple product lines',
+      outcomes: [
+        { n:'360°',  l:'UX, brand, and marketing delivered end-to-end' },
+        { n:'Multi', l:'product lines designed concurrently' },
+        { n:'2020',  l:'First senior independent design role' }
+      ],
+      sections: [
+        { h:'The brief', t:'SPT Groups needed design leadership across multiple simultaneous product lines — spanning UX/UI for web and mobile, brand identity, and digital marketing. Operating as Fractional CMO, I owned the creative strategy and execution end-to-end.' },
+        { h:'What I delivered', t:'I designed digital marketing assets, interactive prototypes, and UI components across web and mobile products.', items:['Developed brand identity and visual systems for multiple product lines','Designed interactive prototypes for stakeholder presentations and developer handoff','Built UI component libraries and design guidelines for ongoing team use','Managed the full creative process from brief to delivery across concurrent workstreams'] },
+        { h:'What this role taught me', t:"Operating as the sole senior designer and CMO at the same time built a discipline I've carried into every role since: design decisions need to be justifiable in business terms. I learned to move fluently between the creative and the commercial." }
+      ]
+    }
+  ];
+
+  /* ── State ── */
+  let currentCase = 0;
+
+  /* ── Page navigation ── */
+  function showPage(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('pg-' + page).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    history.pushState({ page }, '', page === 'home' ? './' : '#' + page);
+  }
+
+  /* ── Render case study ── */
+  function showCase(idx) {
+    currentCase = idx;
+    const c = cases[idx];
+    document.getElementById('cs-tag').textContent          = c.tag;
+    document.getElementById('cs-title').textContent        = c.title;
+    document.getElementById('cs-role').textContent         = c.role;
+    document.getElementById('cs-client').textContent       = c.client;
+    document.getElementById('cs-year').textContent         = c.year;
+    document.getElementById('cs-duration').textContent     = c.duration;
+    document.getElementById('cs-icon').textContent         = c.icon;
+    document.getElementById('cs-banner-label').textContent = c.bannerLabel;
+    document.getElementById('cs-banner').style.background  = c.bannerBg;
+    document.getElementById('cs-outcomes').innerHTML = c.outcomes.map(o =>
+      `<div class="outcome-cell"><div class="outcome-num">${o.n}</div><div class="outcome-label">${o.l}</div></div>`
+    ).join('');
+    document.getElementById('cs-body').innerHTML = c.sections.map(s => {
+      let html = `<h2>${s.h}</h2><p>${s.t}</p>`;
+      if (s.items) html += '<ul>' + s.items.map(i => `<li>${i}</li>`).join('') + '</ul>';
+      return html;
+    }).join('');
+    document.getElementById('next-title').textContent = cases[(idx + 1) % cases.length].title;
+    showPage('case');
+    history.pushState({ page: 'case', idx }, '', '#case-' + idx);
+  }
+
+  function nextCase() { showCase((currentCase + 1) % cases.length); }
+
+  /* ── Browser back/forward ── */
+  window.addEventListener('popstate', () => {
+    const h = location.hash;
+    if (!h) { showPage('home'); return; }
+    if (h.startsWith('#case-')) {
+      const idx = parseInt(h.replace('#case-', ''), 10);
+      if (!isNaN(idx) && cases[idx]) { showCase(idx); return; }
+    }
+    const page = h.replace('#', '');
+    if (['home','about','contact'].includes(page)) showPage(page);
+  });
+
+  /* ── Deep link on load ── */
+  (function init() {
+    const h = location.hash;
+    if (h.startsWith('#case-')) {
+      const idx = parseInt(h.replace('#case-', ''), 10);
+      if (!isNaN(idx) && cases[idx]) { showCase(idx); return; }
+    }
+    if (h === '#about')   { showPage('about');   return; }
+    if (h === '#contact') { showPage('contact'); return; }
+  })();
+</script>
 </body>
 </html>
